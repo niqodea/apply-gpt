@@ -11,6 +11,14 @@ packages = [{include = "apply_gpt"}]
 python = "^3.11"
 openai = "^0.27.9"
 
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.0.285"
+black = "^23.7.0"
+mypy = "^1.5.1"
+
+[tool.ruff]
+select = ["F", "E", "W", "I001"]
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
