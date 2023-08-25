@@ -17,6 +17,7 @@ pyyaml = "^6.0.1"
 ruff = "^0.0.285"
 black = "^23.7.0"
 mypy = "^1.5.1"
+types-pyyaml = "^6.0.12.11"
 
 [tool.ruff]
 select = ["F", "E", "W", "I001"]
