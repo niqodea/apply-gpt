@@ -8,15 +8,15 @@ readme = "README.md"
 packages = [{include = "apply_gpt"}]
 
 [tool.poetry.dependencies]
-python = "^3.11"
-openai = "^0.27.9"
 pydantic = "^2.3.0"
+python = "^3.11"
 pyyaml = "^6.0.1"
+openai = "^0.27.9"
 
 [tool.poetry.group.dev.dependencies]
-ruff = "^0.0.285"
 black = "^23.7.0"
 mypy = "^1.5.1"
+ruff = "^0.0.285"
 types-pyyaml = "^6.0.12.11"
 
 [tool.ruff]
