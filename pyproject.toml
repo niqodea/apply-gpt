@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "apply-gpt"
+version = "0.1.0"
+description = "A tool to help you write curriculums and cover letters for job applications"
+authors = ["Nicola De Angeli"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "apply_gpt"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+openai = "^0.27.9"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
