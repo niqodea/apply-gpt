@@ -1,9 +1,10 @@
-name: "John Doe"
-address: "300 E St SW, Washington, DC 20546, United States"  # nullable
-phone: "+01-234-567-890"  # nullable
-mail: "johndoe@example.com"
-linkedin: "johndoe"  # nullable, put stuff after linkedin.com/(pub|in|profile)/ from profile URL
-github: "johndoe"  # nullable, put username
+private:  # not sent to external APIs
+    name: "John Doe"
+    address: "300 E St SW, Washington, DC 20546, United States"  # nullable
+    phone: "+01-234-567-890"  # nullable
+    mail: "johndoe@example.com"
+    linkedin: "johndoe"  # nullable, put stuff after linkedin.com/(pub|in|profile)/ from profile URL
+    github: "johndoe"  # nullable, put username
 
 experiences:
   - role: "Senior AI Engineer"

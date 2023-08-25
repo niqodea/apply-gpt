@@ -5,6 +5,15 @@ from typing import Any, ClassVar, Pattern, Sequence
 from pydantic import BaseModel, NonNegativeInt, root_validator, validator
 
 
+class Private(BaseModel):
+    name: str
+    address: str | None
+    phone: str | None  # TODO maybe switch to PhoneNumber
+    mail: str  # TODO maybe switch to EmailStr
+    linkedin: str | None
+    github: str | None
+
+
 class Month(Enum):
     JANUARY = "january"
     FEBRUARY = "february"
@@ -135,12 +144,6 @@ class Education(BaseModel):
 
 
 class AboutMe(BaseModel):
-    name: str
-    address: str | None
-    phone: str | None  # TODO maybe switch to PhoneNumber
-    mail: str  # TODO maybe switch to EmailStr
-    linkedin: str | None
-    github: str | None
-
+    private: Private
     experiences: Sequence[Experience]
     educations: Sequence[Education]
