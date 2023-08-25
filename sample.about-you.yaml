@@ -1,0 +1,44 @@
+name: "John Doe"
+mail: "johndoe@example.com"
+phone: "+01-234-567-890"  # nullable
+address: "300 E St SW, Washington, DC 20546, United States"  # nullable
+linkedin: "johndoe"  # nullable, paste the string after "linkedin.com/
+github: "johndoe"  # nullable
+
+experiences:
+  - role: "Senior AI Engineer"
+    company: "European Organization for Nuclear Research"
+    start_date: "2022"  # "YYYY" or "Month YYYY"
+    end_date: null  # null or missing means ongoing
+    achievements:
+      - "Prolonged stable state of antimatter by 300% using GANs"
+      - "Simulated particle collisions with 90% savings in computing power using diffusion models"
+      # ...
+  - role: "ML Researcher"
+    company: "National Aeronautics and Space Administration"
+    start-date: "2020"
+    end-date: "2022"
+    achievements:
+      - "Discovered 10+ new planets using outlier detection techniques"
+      - "Computed an orbit of Pluto with an error below 3 meters using logistic regression"
+      # ...
+  # ...
+
+educations:
+  - degree: "Master's degree in Artificial Intelligence"
+    institution: "Massachussets Institute of Technology"
+    grade: "4.0 GPA"  # nullable
+    start-date: "2018"
+    end-date: "2020"
+    achievements:
+      - "Completed a Honors Program earning a dual Master's degree from MIT and Harvard University"
+      - "Coauthored a paper describing an O(N) sorting algorithm leveraging diffusion models"
+      # ...
+  - degree: "Bachelor's degree in Computer Engineering"
+    institution: "University of Oxford"
+    grade: null  # null or missing to omit grade
+    start_date: "2015"
+    end_date: "2018"
+    achievements: null  # null or missing to omit achievements
+  # ...
+
