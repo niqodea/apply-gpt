@@ -14,12 +14,21 @@ def main() -> None:
         type=Path,
         help="Path to the YAML file with information about the user",
     )
+    parser.add_argument(
+        "-j",
+        "--job-description",
+        type=Path,
+        help="Path to the raw text file containing the job description",
+    )
     args = parser.parse_args()
     about_me_path: Path = args.about_me
+    job_description_path: Path = args.job_description
 
     about_me = load_about_me(about_me_path)
+    job_description = job_description_path.read_text()
 
     print(about_me)
+    print(job_description)
 
 
 def load_about_me(path: Path) -> AboutMe:
