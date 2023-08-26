@@ -48,9 +48,6 @@ class Date(BaseModel):
         year = re_match.group(1)
         return dict(year=year)
 
-    def __str__(self) -> str:
-        return f"{self.year}"
-
 
 class DetailedDate(Date):
     month: Month
@@ -73,9 +70,6 @@ class DetailedDate(Date):
         month = re_match.group(1)
         year = re_match.group(2)
         return dict(year=year, month=month)
-
-    def __str__(self) -> str:
-        return f"{self.month.value.capitalize()} {self.year}"
 
 
 def is_before(date_a: Date, date_b: Date) -> bool | None:

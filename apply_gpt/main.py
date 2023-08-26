@@ -4,6 +4,7 @@ from pathlib import Path
 import yaml
 
 from apply_gpt.data import AboutMe
+from apply_gpt.text_converter import SimpleTextConverter, TextConverter
 
 
 def main() -> None:
@@ -29,6 +30,14 @@ def main() -> None:
 
     print(about_me)
     print(job_description)
+
+    text_converter: TextConverter = SimpleTextConverter()
+
+    for experience in about_me.experiences:
+        print(text_converter.textify_experience(experience))
+
+    for education in about_me.educations:
+        print(text_converter.textify_education(education))
 
 
 def load_about_me(path: Path) -> AboutMe:
