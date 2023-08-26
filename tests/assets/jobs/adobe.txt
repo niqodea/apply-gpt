@@ -1,0 +1,27 @@
+Our Company
+
+Changing the world through digital experiences is what Adobe’s all about. We give everyone—from emerging artists to global brands—everything they need to design and deliver exceptional digital experiences! We’re passionate about empowering people to create beautiful and powerful images, videos, and apps, and transform how companies interact with customers across every screen.
+
+We’re on a mission to hire the very best and are committed to creating exceptional employee experiences where everyone is respected and has access to equal opportunity. We realize that new ideas can come from everywhere in the organization, and we know the next big idea could be yours!
+
+In the Adobe GenTech team, we are building a new data processing platform to power generative AI. Become part of this growing team at Adobe and have a phenomenal impact on computer vision, user understanding, language understanding, and digital experience optimization. The objective is to make generative AI offerings a world-class, leading-edge, differentiating product in the Adobe Cloud ecosystem. We match the pace, innovation, and excitement of a startup, backed by the resources and infrastructure of Adobe.
+
+We are looking for a good blend of science and engineering skills. An experienced engineer with a proven track record of solving critical engineering problems through strong analytical/quantitative and engineering skills. A hands-on person who has strong technical and communication skills and provides innovative technical solutions promptly. This is an opportunity to make a huge impact in a fast-paced, startup-like environment in a great company. Join us!
+
+Responsibilities
+• Design and Engineering cloud infrastructure with effective computing and storage resources and efficient networking topology that meets enterprise security compliance.
+• Build and develop an effective and maintainable toolkit for infrastructure provision and management on public cloud like AWS.
+• Design and develop SDK and backend services for emerging data capabilities.
+• Collaborate with clients, architects, product management, and work with an engineering-focused, iterative team to build and establish product requirements.
+• Write and review technical documents, including requirements and design documents for existing and continuously evolving features of the Sensei platform.
+
+What you need to succeed
+• MS/PhD in Computer Science or a related field.
+• 5+ years of industry experience in building and maintaining big data pipelines and/or building and maintaining analytical or reporting systems at scale.
+• Hands-on experience in Python, especially processing large data files with Python multithreading.
+• Experience with Docker, Containerization, AWS.
+• Experience in micro-services and REST (Representational State Transfer) APIs.
+• Experience in RDBMS (Relational Database Management Systems) and NoSQL databases.
+• Understanding of state-of-the-art large language model techniques, especially in the Computer Vision / Video Process /3D area.
+• Proficient interpersonal and communication skills.
+
