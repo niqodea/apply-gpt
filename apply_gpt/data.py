@@ -141,3 +141,14 @@ class AboutMe(BaseModel):
     private: Private
     experiences: Sequence[Experience]
     educations: Sequence[Education]
+
+
+class Skillset(BaseModel):
+    name: str
+    skills: Sequence[str]
+
+
+class Curriculum(BaseModel):
+    experiences: Sequence[Experience]
+    educations: Sequence[Education]
+    skillsets: Sequence[Skillset]
