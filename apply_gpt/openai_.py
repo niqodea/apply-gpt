@@ -31,7 +31,7 @@ class OpenaiTyping:
             class Object(TypedDict):
                 type: Literal["object"]
                 properties: Mapping[str, OpenaiTyping.Function.Parameters.Any]
-                required: Sequence[str]
+                required: Sequence[str]  # NOTE: not enforced
                 description: NotRequired[str]
 
             class Array(TypedDict):
@@ -45,7 +45,7 @@ class OpenaiTyping:
 
             class String(TypedDict):
                 type: Literal["string"]
-                enum: NotRequired[Sequence[str]]
+                enum: NotRequired[Sequence[str]]  # NOTE: not enforced
                 description: NotRequired[str]
 
             Any: TypeAlias = Object | Array | Number | String
