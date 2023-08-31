@@ -3,7 +3,7 @@
 if [ -n "${1+x}" ]; then
     target_path=$1
 else
-    target_path=$(dirname $0)/apply_gpt
+    target_path=$(dirname $0)
 fi
 
 echo "Running black..."
