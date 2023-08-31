@@ -148,7 +148,12 @@ class Skillset(BaseModel):
     skills: Sequence[str]
 
 
-class Curriculum(BaseModel):
+class Experience(BaseModel):
     employments: Sequence[Employment]
     educations: Sequence[Education]
     skillsets: Sequence[Skillset]
+
+
+class Curriculum(BaseModel):
+    private: Private
+    experience: Experience

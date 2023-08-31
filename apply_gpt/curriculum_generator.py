@@ -1,6 +1,6 @@
 from typing import Protocol
 
-from apply_gpt.data import AboutMe, Curriculum, Month
+from apply_gpt.data import AboutMe, Curriculum, Experience, Month
 from apply_gpt.openai_ import OpenaiJsonGenerator
 from apply_gpt.text_converter import TextConverter
 
@@ -70,23 +70,25 @@ class OpenaiCurriculumGenerator(CurriculumGenerator):
             .replace(OpenaiCurriculumGenerator.JOB_DESCRIPTION_TOKEN, job_description)
         )
 
-        curriculum_json = self._openai_json_generator.generate(
+        experience_json = self._openai_json_generator.generate(
             system_message=self._system_message,
             user_message=user_message,
-            name=OpenaiCurriculumGenerator._CURRICULUM_NAME,
-            schema=OpenaiCurriculumGenerator._CURRICULUM_SCHEMA,
+            name=OpenaiCurriculumGenerator._EXPERIENCE_JSON_NAME,
+            schema=OpenaiCurriculumGenerator._EXPERIENCE_JSON_SCHEMA,
         )
 
-        curriculum = Curriculum.model_validate(curriculum_json)
+        experience = Experience.model_validate(experience_json)
+
+        curriculum = Curriculum(private=about_me.private, experience=experience)
 
         return curriculum
 
-    _CURRICULUM_NAME = "curriculum"
+    _EXPERIENCE_JSON_NAME = "curriculum"
 
     # NOTE: Possible solutions to move this to file for easier prompt engineering
     # 1) Move to file only the descriptions of the fields
     # 2) Extract to a file the way to map Curriculum schema to Curriculum object
-    _CURRICULUM_SCHEMA: OpenaiJsonGenerator.Schema = {
+    _EXPERIENCE_JSON_SCHEMA: OpenaiJsonGenerator.Schema = {
         "type": "object",
         "required": ("employments", "educations", "skillsets"),
         "description": "The curriculum to generate",
