@@ -1,10 +1,10 @@
 from typing import Protocol
 
-from apply_gpt.data import Date, DetailedDate, Education, Experience
+from apply_gpt.data import Date, DetailedDate, Education, Employment
 
 
 class TextConverter(Protocol):
-    def textify_experience(self, experience: Experience) -> str:
+    def textify_employment(self, employment: Employment) -> str:
         ...
 
     def textify_education(self, education: Education) -> str:
@@ -12,14 +12,14 @@ class TextConverter(Protocol):
 
 
 class SimpleTextConverter(TextConverter):
-    def textify_experience(self, experience: Experience) -> str:
+    def textify_employment(self, employment: Employment) -> str:
         text = ""
-        text += f"Role: {experience.role}\n"
-        text += f"Company: {experience.company}\n"
-        text += f"{self._textify_period(experience.start_date, experience.end_date)}\n"
-        if experience.achievements is not None:
+        text += f"Role: {employment.role}\n"
+        text += f"Company: {employment.company}\n"
+        text += f"{self._textify_period(employment.start_date, employment.end_date)}\n"
+        if employment.achievements is not None:
             text += "List of achievements:\n"
-            text += "\n".join(f"- {a}" for a in experience.achievements)
+            text += "\n".join(f"- {a}" for a in employment.achievements)
         return text
 
     def textify_education(self, education: Education) -> str:

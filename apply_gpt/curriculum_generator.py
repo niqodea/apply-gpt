@@ -13,7 +13,7 @@ class CurriculumGenerator(Protocol):
 
 
 class OpenaiCurriculumGenerator(CurriculumGenerator):
-    EXPERIENCES_TOKEN = "{{EXPERIENCES}}"
+    EMPLOYMENTS_TOKEN = "{{EMPLOYMENTS}}"
     EDUCATIONS_TOKEN = "{{EDUCATIONS}}"
     JOB_DESCRIPTION_TOKEN = "{{JOB_DESCRIPTION}}"
 
@@ -28,8 +28,8 @@ class OpenaiCurriculumGenerator(CurriculumGenerator):
         self._openai_json_generator = openai_json_generator
         self._system_message = system_message
 
-        experiences_token_count = user_message_template.count(
-            OpenaiCurriculumGenerator.EXPERIENCES_TOKEN
+        employments_token_count = user_message_template.count(
+            OpenaiCurriculumGenerator.EMPLOYMENTS_TOKEN
         )
         educations_token_count = user_message_template.count(
             OpenaiCurriculumGenerator.EDUCATIONS_TOKEN
@@ -38,14 +38,14 @@ class OpenaiCurriculumGenerator(CurriculumGenerator):
             OpenaiCurriculumGenerator.JOB_DESCRIPTION_TOKEN
         )
         if (
-            experiences_token_count != 1
+            employments_token_count != 1
             or educations_token_count != 1
             or job_description_token_count != 1
         ):
             raise ValueError(
                 "All tokens should appear exactly once in user message template, "
-                f"{OpenaiCurriculumGenerator.EXPERIENCES_TOKEN} "
-                f"found {experiences_token_count} times, "
+                f"{OpenaiCurriculumGenerator.EMPLOYMENTS_TOKEN} "
+                f"found {employments_token_count} times, "
                 f"{OpenaiCurriculumGenerator.EDUCATIONS_TOKEN} "
                 f"found {educations_token_count} times, "
                 f"{OpenaiCurriculumGenerator.JOB_DESCRIPTION_TOKEN} "
@@ -56,15 +56,15 @@ class OpenaiCurriculumGenerator(CurriculumGenerator):
     def generate_curriculum(
         self, about_me: AboutMe, job_description: str
     ) -> Curriculum:
-        experiences = "\n".join(
-            self._text_converter.textify_experience(e) for e in about_me.experiences
+        employments = "\n".join(
+            self._text_converter.textify_employment(e) for e in about_me.employments
         )
         educations = "\n".join(
             self._text_converter.textify_education(e) for e in about_me.educations
         )
         user_message = (
             self._user_message_template.replace(
-                OpenaiCurriculumGenerator.EXPERIENCES_TOKEN, experiences
+                OpenaiCurriculumGenerator.EMPLOYMENTS_TOKEN, employments
             )
             .replace(OpenaiCurriculumGenerator.EDUCATIONS_TOKEN, educations)
             .replace(OpenaiCurriculumGenerator.JOB_DESCRIPTION_TOKEN, job_description)
@@ -88,10 +88,10 @@ class OpenaiCurriculumGenerator(CurriculumGenerator):
     # 2) Extract to a file the way to map Curriculum schema to Curriculum object
     _CURRICULUM_SCHEMA: OpenaiJsonGenerator.Schema = {
         "type": "object",
-        "required": ("experiences", "educations", "skillsets"),
+        "required": ("employments", "educations", "skillsets"),
         "description": "The curriculum to generate",
         "properties": {
-            "experiences": {
+            "employments": {
                 "type": "array",
                 "items": {
                     "type": "object",

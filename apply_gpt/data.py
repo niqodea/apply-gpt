@@ -92,7 +92,7 @@ def is_before(date_a: Date, date_b: Date) -> bool | None:
     return None
 
 
-class Experience(BaseModel):
+class Employment(BaseModel):
     role: str
     company: str
     start_date: DetailedDate | Date
@@ -139,7 +139,7 @@ class Education(BaseModel):
 
 class AboutMe(BaseModel):
     private: Private
-    experiences: Sequence[Experience]
+    employments: Sequence[Employment]
     educations: Sequence[Education]
 
 
@@ -149,6 +149,6 @@ class Skillset(BaseModel):
 
 
 class Curriculum(BaseModel):
-    experiences: Sequence[Experience]
+    employments: Sequence[Employment]
     educations: Sequence[Education]
     skillsets: Sequence[Skillset]

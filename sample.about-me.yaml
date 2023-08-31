@@ -6,7 +6,7 @@ private:  # not sent to external APIs
     linkedin: "johndoe"  # nullable, put stuff after linkedin.com/(pub|in|profile)/ from profile URL
     github: "johndoe"  # nullable, put username
 
-experiences:
+employments:
   - role: "Senior AI Engineer"
     company: "European Organization for Nuclear Research"
     start_date: "2022"  # "YYYY" or "Month YYYY"

@@ -6,7 +6,7 @@ private:
     linkedin: "lindsaydoe"
     github: "lindsaydoe"
 
-experiences:
+employments:
   - role: "AI Researcher & Engineer"
     company: "Elephant Corporation"
     start_date: "August 2020"
