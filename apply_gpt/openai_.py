@@ -139,8 +139,8 @@ class OpenaiManualJsonGenerator:
             f"{message}\n\n"
             "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n"
             "Copy the message above and send it to ChatGPT\n"
-            "Then copy the obtained JSON and paste it here\n"
-            "Enter ctrl-D on a new line when done"
+            "Then copy the obtained JSON and paste it below\n"
+            "Enter ctrl-D on a new line when done\n"
         )
         generated_json_str: str = sys.stdin.read()
         generated_json: Json = json.loads(generated_json_str)
