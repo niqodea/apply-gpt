@@ -1,0 +1,104 @@
+#!/usr/bin/env python3
+
+import argparse
+import sys
+from pathlib import Path
+from typing import Sequence
+
+import yaml
+
+from apply_gpt.achievements_tuner import (
+    AchievementsTuner,
+    OpenaiManualAchievementsTuner,
+)
+from apply_gpt.openai_ import (
+    OpenaiManualJsonGenerator,
+)
+
+_OPENAI_ASSETS_PATH = Path(__file__).parent / "openai-assets"
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "-a",
+        "--achievements",
+        type=Path,
+        help="Path to the YAML containing a list of achievements",
+    )
+    parser.add_argument(
+        "-j",
+        "--job-description",
+        required=False,
+        type=Path,
+        help="Path to the raw text file containing the job description",
+    )
+
+    args = parser.parse_args()
+    achievements_path: Path = args.achievements
+    job_description_path: Path | None = args.job_description
+
+    achievements = create_achievements(achievements_path)
+
+    job_description: str
+    if job_description_path is not None:
+        job_description = job_description_path.read_text()
+    else:
+        print(
+            "Paste the job description below\n" "Enter ctrl-D on a new line when done\n"
+        )
+        job_description = sys.stdin.read()
+
+    achievements_tuner: AchievementsTuner = create_openai_manual_achievements_tuner()
+
+    achievements_tuner.tune_achievements(
+        achievements, job_description, max_achievements=10
+    )
+
+    # TODO
+
+
+def create_achievements(path: Path) -> Sequence[str]:
+    achievements = yaml.load(path.read_text(), Loader=yaml.FullLoader)
+    return achievements
+
+
+def create_openai_manual_achievements_tuner() -> OpenaiManualAchievementsTuner:
+    return OpenaiManualAchievementsTuner(
+        openai_manual_json_generator=OpenaiManualJsonGenerator(),
+        job_skills_msg_prefix="""\
+Below you can find a job description.
+Your task is to extract from the job description a complete list of requirements such as skills and technologies directly relevant to the field of Computer Science and Engineering.
+A requirement is in the form of a technical term that is established in the field.
+You can reword to an extent, but preserve the technical terminology used by the job description if any.
+You must order the requirements in order of perceived importance according to the job description (requirements at the top of the job description are usually more important).
+Ignore requirements such as degrees, years of experience, and soft skills.
+The output should be provided as a flat JSON list of strings.
+You should reply with the JSON list of strings and nothing else.
+""",
+        achievements_skills_msg_prefix="""\
+Below you can find a JSON dictionary mapping identifiers to the corresponding achievement.
+Your task is to extract a list of up to 4 skills and technologies directly relevant to the field of Computer Science and Engineering for each achievement.
+Each element of the list must be an established, well-known term in the field of Computer Science and Engineering.
+If unable to come up with 4 meaningful skills and technologies, feel free to put less than 4.
+The output should be a JSON dictionary mapping identifiers to corresponding list of skills and technologies.
+You should reply with the JSON dictionary and nothing else.
+""",
+        achievements_sort_msg_prefix="""\
+Below you can find a JSON list of requirements followed by a JSON mapping from ids to skillsets.
+Your task is to sort the skillsets, putting at the top those that better match the requirements.
+The output should be a JSON list of sorted ids.
+You should reply with the JSON list and nothing else.
+""",
+        achievements_reword_msg_prefix="""\
+Below you can find a job description followed by a JSON list of achievements.
+Your task is to reword each achievement to align with the terminology and requirements of the job description.
+You should also make sure that each reworded achievement is less than 110 characters long.
+The output should be a JSON list of reworded achievements.
+You should reply with the JSON list and nothing else.
+""",
+    )
+
+
+if __name__ == "__main__":
+    main()
