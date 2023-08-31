@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import sys
 from typing import (
     Any,
     Literal,
@@ -122,3 +123,25 @@ class OpenaiJsonGenerator:
         return generated_json
 
     Schema: TypeAlias = OpenaiTyping.Function.Parameters.Any
+
+
+class OpenaiManualJsonGenerator:
+    def generate(self, message: str) -> Json:
+        """
+        Generate a JSON object by manually interacting with ChatGPT.
+
+        :param message: the message request the generation of the object
+        """
+
+        print(
+            "Copy the message below and send it to ChatGPT\n"
+            ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n\n"
+            f"{message}\n\n"
+            "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n"
+            "Copy the message above and send it to ChatGPT\n"
+            "Then copy the obtained JSON and paste it here\n"
+            "Enter ctrl-D on a new line when done"
+        )
+        generated_json_str: str = sys.stdin.read()
+        generated_json: Json = json.loads(generated_json_str)
+        return generated_json
